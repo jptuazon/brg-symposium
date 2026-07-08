@@ -1,0 +1,902 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Symposium on Biostatistics 2026 | UP Diliman</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <style>
+        /* --- CSS VARIABLES --- */
+        :root {
+            --up-maroon: #7b1113;
+            --up-maroon-dark: #5a0c0e;
+            --up-gold: #F2A900;
+            --up-gold-hover: #d19200;
+            --text-dark: #1a1a1a;
+            --text-muted: #555555;
+            --bg-light: #fcfcfc;
+            --bg-gray: #f4f5f7;
+            --white: #ffffff;
+            --font-sans: 'Inter', sans-serif;
+            --font-serif: 'Playfair Display', serif;
+        }
+
+        /* --- BASE & RESET --- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+        body {
+            font-family: var(--font-sans);
+            color: var(--text-dark);
+            line-height: 1.7;
+            background-color: var(--bg-light);
+            overflow-x: hidden;
+        }
+        a {
+            text-decoration: none;
+            color: var(--up-maroon);
+            transition: all 0.3s ease;
+        }
+        section {
+            padding: 7rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* --- TYPOGRAPHY --- */
+        h1, h2, h3 {
+            font-family: var(--font-serif);
+            color: var(--up-maroon);
+        }
+        h2 {
+            text-align: center;
+            font-size: 2.8rem;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+        h2::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: var(--up-gold);
+            margin: 1rem auto 3rem;
+            border-radius: 2px;
+        }
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-top: -2rem;
+            margin-bottom: 4rem;
+            font-size: 1.1rem;
+        }
+
+        /* --- BUTTONS --- */
+        .btn {
+            display: inline-block;
+            background-color: var(--up-maroon);
+            color: var(--white);
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            box-shadow: 0 4px 15px rgba(123, 17, 19, 0.2);
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        }
+        .btn:hover {
+            background-color: var(--up-maroon-dark);
+            color: var(--white);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(123, 17, 19, 0.3);
+        }
+        .btn-gold {
+            background-color: var(--up-gold);
+            color: var(--text-dark);
+            box-shadow: 0 4px 15px rgba(242, 169, 0, 0.3);
+        }
+        .btn-gold:hover {
+            background-color: var(--up-gold-hover);
+            color: var(--text-dark);
+        }
+
+        /* --- GLASSMORPHISM NAVIGATION --- */
+        nav {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 4rem;
+            transition: padding 0.3s ease;
+        }
+
+        /* --- LOGOS --- */
+        .nav-logos {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .nav-logos img {
+            height: 35px; /* Slightly smaller to fit text below */
+            width: auto;
+            object-fit: contain;
+        }
+
+        .nav-brand {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .nav-title {
+            font-family: var(--font-sans);
+            font-size: 0.9rem;
+            font-weight: 700;
+            color: var(--up-maroon);
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            line-height: 1;
+        }
+
+        /* Adjustments for smaller screens */
+        @media (max-width: 900px) {
+            .nav-logos img { height: 25px; }
+            .nav-title { font-size: 0.7rem; }
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+        .nav-links a {
+            color: var(--text-dark);
+            font-size: 0.95rem;
+            font-weight: 500;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--up-maroon);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links .nav-btn::after { display: none; }
+        
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.8rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            color: var(--up-maroon);
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            position: relative;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 2rem;
+            color: var(--white);
+            background: url('./images/main_pic.jpg') center/cover fixed;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: linear-gradient(135deg, rgba(123, 17, 19, 0.9) 0%, rgba(20, 20, 20, 0.8) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+        }
+        .hero h1 {
+            font-size: 4.5rem;
+            color: var(--white);
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+            text-transform: uppercase;
+        }
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 2.5rem;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+        .hero-date {
+            display: inline-block;
+            border-top: 1px solid rgba(255,255,255,0.3);
+            border-bottom: 1px solid rgba(255,255,255,0.3);
+            padding: 1rem 0;
+            margin-bottom: 3rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+        }
+
+        /* --- ANIMATION CLASSES --- */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+
+        /* --- ABOUT SECTION --- */
+        .about-content {
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* --- SPEAKERS SECTION --- */
+        .bg-gray {
+            background-color: var(--bg-gray);
+            max-width: 100%;
+        }
+        .speakers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .speaker-card {
+            background: var(--white);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        .speaker-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(123, 17, 19, 0.1);
+        }
+        .speaker-card img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .speaker-card:hover img {
+            transform: scale(1.05);
+        }
+        .speaker-info {
+            padding: 2rem 1.5rem;
+            position: relative;
+            background: var(--white);
+            z-index: 2;
+        }
+        .speaker-info h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        .speaker-info p {
+            color: var(--up-maroon);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+        .speaker-info .org {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            font-weight: 400;
+            margin-top: 0.5rem;
+        }
+        .click-hint {
+            display: inline-block;
+            margin-top: 1rem;
+            font-size: 0.8rem;
+            color: var(--up-gold);
+            font-weight: 600;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        .speaker-card:hover .click-hint {
+            opacity: 1;
+        }
+
+        /* --- MODAL STYLES --- */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            z-index: 2000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+        .modal-content {
+            background: var(--white);
+            width: 90%;
+            max-width: 650px;
+            border-radius: 16px;
+            padding: 3rem 2.5rem;
+            position: relative;
+            text-align: center;
+            transform: translateY(30px);
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            max-height: 90vh;
+            overflow-y: auto;
+        }
+        .modal-overlay.active .modal-content {
+            transform: translateY(0);
+        }
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 25px;
+            font-size: 2rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: color 0.2s;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: var(--up-maroon);
+        }
+        .modal-img {
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--up-maroon);
+            margin: 0 auto 1.5rem;
+            box-shadow: 0 10px 20px rgba(123, 17, 19, 0.2);
+        }
+        #modal-name {
+            font-size: 2rem;
+            margin-bottom: 0.2rem;
+        }
+        #modal-role {
+            color: var(--up-maroon);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        #modal-org {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+        #modal-bio {
+            text-align: left;
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.8;
+            border-top: 1px solid #eee;
+            padding-top: 1.5rem;
+        }
+
+        /* --- SCHEDULE SECTION --- */
+        .schedule-table-wrapper {
+            background: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            overflow: hidden;
+        }
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .schedule-table th, .schedule-table td {
+            padding: 1.5rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+        .schedule-table th {
+            background-color: var(--up-maroon);
+            color: var(--white);
+            font-family: var(--font-serif);
+            font-size: 1.1rem;
+            font-weight: 600;
+            width: 33.33%;
+        }
+        .schedule-table tr {
+            transition: background-color 0.2s ease;
+        }
+        .schedule-table tr:hover td {
+            background-color: #fcf4f5;
+        }
+        .time-col {
+            font-weight: 600;
+            color: var(--up-maroon);
+            white-space: nowrap;
+            width: 20%;
+        }
+
+        /* --- VENUE SECTION --- */
+        #venue {
+            padding: 7rem 2rem;
+        }
+
+        .venue-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 4rem;
+        }
+
+        .venue-gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .venue-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .venue-info {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .venue-map {
+            flex: 1;
+            min-width: 300px;
+            height: 350px;
+            background: #e0e0e0; /* Placeholder color */
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+        /* Keeps the map label visible */
+        .venue-map::after {
+            content: 'Map Integration Placeholder';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #777;
+            font-weight: 600;
+        }
+        /* --- CTA SECTION --- */
+        .cta-section {
+            text-align: center;
+            background: linear-gradient(135deg, var(--up-maroon) 0%, #3a0809 100%);
+            color: var(--white);
+            max-width: 100%;
+        }
+        .cta-section h2 {
+            color: var(--white);
+        }
+        .cta-section h2::after {
+            background: var(--up-gold);
+        }
+        .cta-section p {
+            font-size: 1.2rem;
+            margin-bottom: 3rem;
+            opacity: 0.9;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: #111;
+            color: #888;
+            text-align: center;
+            padding: 4rem 2rem 2rem;
+        }
+        .footer-organizers {
+            margin-bottom: 3rem;
+            padding-bottom: 3rem;
+            border-bottom: 1px solid #333;
+        }
+        .footer-organizers h4 {
+            color: var(--white);
+            font-family: var(--font-sans);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+        .footer-logos {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        .footer-logos img {
+            height: 70px; /* Adjust this height for footer logos */
+            width: auto;
+            object-fit: contain;
+            /* filter: grayscale(100%) brightness(200%); Makes them look uniform in footer; remove if you want full color */
+            /* opacity: 0.7; */
+            transition: all 0.3s ease;
+        }
+        /* .footer-logos img:hover {
+            filter: grayscale(0%) brightness(100%);
+            opacity: 1;
+        } */
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 3rem; }
+            nav { padding: 1rem 2rem; }
+            .nav-logos img { height: 35px; } /* Smaller logos on mobile */
+            .nav-logos { gap: 0.5rem; }
+            
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(255, 255, 255, 0.98);
+                padding: 2rem 0;
+                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            }
+            .nav-links.active { display: flex; }
+            .mobile-menu-btn { display: block; }
+            .schedule-table-wrapper { overflow-x: auto; }
+            
+            .footer-logos { gap: 1.5rem; }
+            .footer-logos img { height: 50px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- NAVIGATION -->
+    <nav id="navbar">
+        <div class="nav-brand">
+            <div class="nav-logos">
+                <img src="./images/upd_logo.png" alt="UP Logo">
+                <img src="./images/upss.png" alt="School of Stat Logo">
+                <img src="./images/brg_logo_sub_colored.png" alt="BioStat Group Logo">
+            </div>
+            <div class="nav-title" style="text-align: center;">Symposium on Biostatistics</div>
+        </div>
+        
+        <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#speakers">Speakers</a></li>
+            <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#venue">Venue</a></li>
+            <li><a href="#register" class="btn nav-btn" style="color: white; padding: 0.6rem 1.5rem;">Register</a></li>
+        </ul>
+    </nav>
+
+
+    <!-- HERO SECTION -->
+    <header class="hero" id="home">
+        <div class="hero-content fade-up">
+            <div class="hero-date">September 14-15, 2026 &nbsp;|&nbsp; UP Diliman</div>
+            <h1>Symposium on Biostatistics</h1>
+            <p>Advancing Biostatistics Through Research and Collaboration</p>
+            <a href="#register" class="btn btn-gold">Secure Your Spot</a>
+        </div>
+    </header>
+
+    <!-- ABOUT SECTION -->
+    <section id="about">
+        <h2 class="fade-up">Welcome</h2>
+        <div class="about-content fade-up delay-1">
+            <p>The UP School of Statistics invites statisticians, biostatisticians, epidemiologists, students, practitioners of statistics in the industry and government, and other enthusiasts to the <strong>Symposium on Biostatistics 2026</strong>. The event is a two-day conference that features speakers from prominent researchers in biostatistics and epidemiology from prestigious international and local institutions, as well as early-career researchers in biostatistics.</p>
+        </div>
+    </section>
+
+    <!-- SPEAKERS SECTION -->
+    <div class="bg-gray">
+        <section id="speakers">
+            <h2 class="fade-up">Distinguished Speakers</h2>
+            <p class="section-subtitle fade-up delay-1">Learn from the forefront of statistical research</p>
+            
+            <div class="speakers-grid">
+                <!-- Speaker 1 -->
+                <div class="speaker-card fade-up delay-1" onclick="openModal('reyes')">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dr. Elena Reyes">
+                    <div class="speaker-info">
+                        <h3>Dr. Elena Reyes</h3>
+                        <p>Professor of Epidemiology</p>
+                        <div class="org">University of the Philippines Manila</div>
+                        <span class="click-hint">View Profile &rarr;</span>
+                    </div>
+                </div>
+                <!-- Speaker 2 -->
+                <div class="speaker-card fade-up delay-2" onclick="openModal('cruz')">
+                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dr. Antonio Cruz">
+                    <div class="speaker-info">
+                        <h3>Dr. Antonio Cruz</h3>
+                        <p>Director of Data Analytics</p>
+                        <div class="org">Department of Health</div>
+                        <span class="click-hint">View Profile &rarr;</span>
+                    </div>
+                </div>
+                <!-- Speaker 3 -->
+                <div class="speaker-card fade-up delay-3" onclick="openModal('santos')">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dr. Maria Santos">
+                    <div class="speaker-info">
+                        <h3>Dr. Maria Santos</h3>
+                        <p>Chief Biostatistician</p>
+                        <div class="org">Global Health Metrics Institute</div>
+                        <span class="click-hint">View Profile &rarr;</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- SPEAKER MODAL -->
+    <div id="speakerModal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="modal-close" onclick="closeModal()">&times;</span>
+            <img id="modal-img" class="modal-img" src="" alt="Speaker Image">
+            <h3 id="modal-name">Name</h3>
+            <p id="modal-role">Role</p>
+            <p id="modal-org">Organization</p>
+            <div id="modal-bio">Biography goes here.</div>
+        </div>
+    </div>
+
+    <!-- SCHEDULE SECTION -->
+    <section id="schedule">
+        <h2 class="fade-up">Program Schedule</h2>
+        <p class="section-subtitle fade-up delay-1">Two days of insightful presentations and networking</p>
+        
+        <div class="schedule-table-wrapper fade-up delay-2">
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th class="time-col">Time</th>
+                        <th>Day 1 (Sept 14)</th>
+                        <th>Day 2 (Sept 15)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="time-col">08:00 AM</td>
+                        <td>Registration & Coffee</td>
+                        <td>Morning Plenary</td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">09:30 AM</td>
+                        <td>Opening Ceremonies & Keynote</td>
+                        <td>Panel: Predictive Modeling</td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">12:00 PM</td>
+                        <td>Lunch Break</td>
+                        <td>Lunch Break</td>
+                    </tr>
+                    <tr>
+                        <td class="time-col">01:30 PM</td>
+                        <td>Poster Presentations</td>
+                        <td>Closing Remarks & Awards</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- VENUE SECTION -->
+    <div class="bg-gray">
+        <section id="venue">
+            <h2 class="fade-up">The Venue</h2>
+            
+            <!-- Gallery Area -->
+            <div class="venue-gallery fade-up delay-1">
+                <img src="./images/audi.jpg" alt="Main Auditorium">
+                <img src="./images/lobby.jpg" alt="Lobby Area">
+                <img src="./images/exterior.jpg" alt="Building Exterior">
+            </div>
+
+            <!-- Info and Map Area -->
+            <div class="venue-container" style="margin-top: 4rem;">
+                <div class="venue-info fade-up">
+                    <h3>School of Statistics Auditorium</h3>
+                    <p><strong>UP Diliman, Quezon City, Philippines</strong></p>
+                    <p style="margin-top: 1rem;">The symposium will be held in the newly upgraded facilities of the UP School of Statistics. The venue offers state-of-the-art audiovisual equipment, dedicated spaces for poster presentations, and comfortable lounges for academic networking.</p>
+                </div>
+                <div class="venue-map fade-up delay-2">
+                    <!-- Your Map Integration Placeholder -->
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- CTA / REGISTRATION -->
+    <section id="register" class="cta-section">
+        <div class="fade-up">
+            <h2>Call for Registration</h2>
+            <p>Secure your attendance for this premier event. Spaces are limited.</p>
+            <a href="#" class="btn btn-gold" style="font-size: 1.1rem; padding: 1.2rem 3rem;">Register for the Symposium</a>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <div class="footer-organizers">
+            <h4>Organized By</h4>
+            <div class="footer-logos">
+                <!-- Institution 1 -->
+                <div class="logo-group">
+                    <img src="./images/upd_logo.png" alt="University of the Philippines Logo">
+                    <p>University of the Philippines (UP) Diliman</p>
+                </div>
+                <!-- Institution 2 -->
+                <div class="logo-group">
+                    <img src="./images/upss.png" alt="School of Statistics Logo">
+                    <p>UP School of Statistics (UPSS)</p>
+                </div>
+                <!-- Institution 3 -->
+                <div class="logo-group">
+                    <img src="./images/brg_logo_sub_colored.png" alt="Biostatistics Research Group Logo">
+                    <p>UPSS Biostatistics Research Group</p>
+                </div>
+            </div>
+        </div>
+        <p>&copy; 2026 Symposium on Biostatistics. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">stat.upd.edu.ph | symposium@stat.upd.edu.ph</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Mobile Navigation Toggle
+        function toggleMenu() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        }
+
+        // Smooth Scroll for Anchors
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                document.querySelector('.nav-links').classList.remove('active');
+            });
+        });
+
+        // Scroll Animation (Intersection Observer)
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.15
+        };
+
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target); 
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-up').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Navbar shrink on scroll
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.style.padding = '0.8rem 4rem';
+                nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.05)';
+            } else {
+                nav.style.padding = '1.2rem 4rem';
+                nav.style.boxShadow = 'none';
+            }
+        });
+
+        // Speaker Modal Logic (Placeholder Data)
+        const speakerData = {
+            'reyes': {
+                name: 'Dr. Elena Reyes',
+                role: 'Professor of Epidemiology',
+                org: 'University of the Philippines Manila',
+                img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                bio: 'Dr. Reyes is a renowned epidemiologist specializing in spatial analysis of infectious diseases. She has published over 50 peer-reviewed papers on tropical disease transmission dynamics and has served as a primary consultant for the World Health Organization in the Southeast Asian region. Her keynote will focus on utilizing machine learning to map localized disease outbreaks before they peak.'
+            },
+            'cruz': {
+                name: 'Dr. Antonio Cruz',
+                role: 'Director of Data Analytics',
+                org: 'Department of Health',
+                img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                bio: 'Leading the national health data task force, Dr. Cruz has been instrumental in modernizing the data infrastructure of the DOH. He holds a Ph.D. in Biostatistics from the University of Washington. At the symposium, he will be presenting a groundbreaking framework for integrating fragmented regional health data into a cohesive, real-time national dashboard to guide immediate policy responses.'
+            },
+            'santos': {
+                name: 'Dr. Maria Santos',
+                role: 'Chief Biostatistician',
+                org: 'Global Health Metrics Institute',
+                img: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80',
+                bio: 'Dr. Santos bridges the gap between academic statistics and on-the-ground global health initiatives. Her current research focuses on adjusting for biases in self-reported health data across diverse cultural landscapes. She is a passionate advocate for open-source health data and will be conducting a specialized workshop on mitigating data bias in predictive modeling.'
+            }
+        };
+
+        const modal = document.getElementById('speakerModal');
+
+        function openModal(speakerId) {
+            const data = speakerData[speakerId];
+            if(!data) return;
+
+            document.getElementById('modal-img').src = data.img;
+            document.getElementById('modal-name').innerText = data.name;
+            document.getElementById('modal-role').innerText = data.role;
+            document.getElementById('modal-org').innerText = data.org;
+            document.getElementById('modal-bio').innerText = data.bio;
+
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+    </script>
+</body>
+</html>
