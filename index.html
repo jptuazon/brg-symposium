@@ -7,21 +7,26 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
     <style>
         /* --- CSS VARIABLES --- */
         :root {
             --up-maroon: #7b1113;
             --up-maroon-dark: #5a0c0e;
+            --up-maroon-light: #fdf3f4;
             --up-gold: #F2A900;
             --up-gold-hover: #d19200;
-            --text-dark: #1a1a1a;
-            --text-muted: #555555;
-            --bg-light: #fcfcfc;
-            --bg-gray: #f4f5f7;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --bg-light: #fafafa;
+            --bg-gray: #f1f5f9;
             --white: #ffffff;
+            --border-color: #e2e8f0;
             --font-sans: 'Inter', sans-serif;
             --font-serif: 'Playfair Display', serif;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 25px -5px rgba(15, 23, 42, 0.08);
+            --shadow-lg: 0 20px 40px -10px rgba(123, 17, 19, 0.15);
         }
 
         /* --- BASE & RESET --- */
@@ -37,80 +42,95 @@
             line-height: 1.7;
             background-color: var(--bg-light);
             overflow-x: hidden;
+            letter-spacing: -0.01em;
         }
         a {
             text-decoration: none;
             color: var(--up-maroon);
-            transition: all 0.3s ease;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
         section {
-            padding: 7rem 2rem;
+            padding: 8rem 2rem;
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+        }
+        .bg-gray {
+            background-color: var(--bg-gray);
+            max-width: 100%;
         }
 
         /* --- TYPOGRAPHY --- */
-        h1, h2, h3 {
+        h1, h2, h3, h4 {
             font-family: var(--font-serif);
             color: var(--up-maroon);
+            font-weight: 700;
         }
         h2 {
             text-align: center;
-            font-size: 2.8rem;
-            margin-bottom: 1rem;
-            position: relative;
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            letter-spacing: -0.02em;
         }
         h2::after {
             content: '';
             display: block;
-            width: 60px;
-            height: 3px;
+            width: 45px;
+            height: 4px;
             background: var(--up-gold);
-            margin: 1rem auto 3rem;
-            border-radius: 2px;
+            margin: 1.2rem auto 0;
+            border-radius: 4px;
         }
         .section-subtitle {
             text-align: center;
             color: var(--text-muted);
-            margin-top: -2rem;
-            margin-bottom: 4rem;
-            font-size: 1.1rem;
+            margin-top: 1.5rem;
+            margin-bottom: 5rem;
+            font-size: 1.15rem;
+            font-family: var(--font-sans);
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
         }
 
         /* --- BUTTONS --- */
         .btn {
-            display: inline-block;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
             background-color: var(--up-maroon);
             color: var(--white);
             padding: 1rem 2.5rem;
-            border-radius: 50px;
-            font-weight: 500;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 15px rgba(123, 17, 19, 0.2);
-            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            letter-spacing: 0.2px;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid transparent;
         }
         .btn:hover {
             background-color: var(--up-maroon-dark);
             color: var(--white);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(123, 17, 19, 0.3);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(123, 17, 19, 0.2);
         }
         .btn-gold {
             background-color: var(--up-gold);
             color: var(--text-dark);
-            box-shadow: 0 4px 15px rgba(242, 169, 0, 0.3);
         }
         .btn-gold:hover {
             background-color: var(--up-gold-hover);
             color: var(--text-dark);
+            box-shadow: 0 8px 20px rgba(242, 169, 0, 0.25);
         }
 
-        /* --- GLASSMORPHISM NAVIGATION --- */
+        /* --- NAVIGATION --- */
         nav {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.8);
             position: fixed;
             width: 100%;
             top: 0;
@@ -119,75 +139,66 @@
             justify-content: space-between;
             align-items: center;
             padding: 1.2rem 4rem;
-            transition: padding 0.3s ease;
+            transition: all 0.3s ease;
         }
-
-        /* --- LOGOS --- */
-        .nav-logos {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .nav-logos img {
-            height: 35px; /* Slightly smaller to fit text below */
-            width: auto;
-            object-fit: contain;
-        }
-
         .nav-brand {
             display: flex;
             flex-direction: column;
-            align-items: center;
-            gap: 0.3rem;
+            align-items: flex-start;
+            gap: 0.2rem;
         }
-
+        .nav-logos {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .nav-logos img {
+            height: 32px;
+            width: auto;
+            object-fit: contain;
+        }
         .nav-title {
             font-family: var(--font-sans);
-            font-size: 0.9rem;
+            font-size: 0.75rem;
             font-weight: 700;
             color: var(--up-maroon);
             text-transform: uppercase;
-            letter-spacing: 0.5px;
-            line-height: 1;
+            letter-spacing: 1px;
         }
-
-        /* Adjustments for smaller screens */
-        @media (max-width: 900px) {
-            .nav-logos img { height: 25px; }
-            .nav-title { font-size: 0.7rem; }
-        }
-
         .nav-links {
             list-style: none;
             display: flex;
-            gap: 2.5rem;
+            gap: 1.5rem;
             align-items: center;
         }
         .nav-links a {
             color: var(--text-dark);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 500;
             position: relative;
+            padding: 0.5rem 0;
         }
         .nav-links a::after {
             content: '';
             position: absolute;
             width: 0;
             height: 2px;
-            bottom: -5px;
+            bottom: 0;
             left: 0;
             background-color: var(--up-maroon);
-            transition: width 0.3s ease;
+            transition: width 0.25s ease;
         }
         .nav-links a:hover::after {
             width: 100%;
         }
         .nav-links .nav-btn::after { display: none; }
-        
+        .nav-btn {
+            padding: 0.6rem 1.5rem !important;
+            border-radius: 4px;
+        }
         .mobile-menu-btn {
             display: none;
-            font-size: 1.8rem;
+            font-size: 1.5rem;
             cursor: pointer;
             background: none;
             border: none;
@@ -199,153 +210,467 @@
             position: relative;
             height: 100vh;
             display: flex;
-            flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
             padding: 0 2rem;
             color: var(--white);
             background: url('./images/main_pic.jpg') center/cover fixed;
+            overflow: hidden;
         }
         .hero::before {
             content: '';
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
-            background: linear-gradient(135deg, rgba(123, 17, 19, 0.9) 0%, rgba(20, 20, 20, 0.8) 100%);
+            background: linear-gradient(135deg, rgba(90, 12, 14, 0.95) 0%, rgba(15, 23, 42, 0.9) 100%);
             z-index: 1;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px), 
+                              linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 2;
         }
         .hero-content {
             position: relative;
-            z-index: 2;
-            max-width: 900px;
+            z-index: 3;
+            max-width: 950px;
         }
         .hero h1 {
-            font-size: 4.5rem;
+            font-size: 4.8rem;
             color: var(--white);
             margin-bottom: 1.5rem;
             line-height: 1.1;
-            text-shadow: 0 4px 10px rgba(0,0,0,0.3);
-            text-transform: uppercase;
+            letter-spacing: -0.02em;
         }
         .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 2.5rem;
+            font-size: 1.5rem;
+            margin-bottom: 3rem;
             font-weight: 300;
-            opacity: 0.9;
+            color: rgba(255, 255, 255, 0.85);
+            font-family: var(--font-sans);
         }
         .hero-date {
-            display: inline-block;
-            border-top: 1px solid rgba(255,255,255,0.3);
-            border-bottom: 1px solid rgba(255,255,255,0.3);
-            padding: 1rem 0;
-            margin-bottom: 3rem;
-            font-weight: 500;
-            letter-spacing: 2px;
+            display: inline-flex;
+            align-items: center;
+            gap: 1rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(4px);
+            padding: 0.6rem 1.5rem;
+            border-radius: 4px;
+            margin-bottom: 2.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
             text-transform: uppercase;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
         /* --- ANIMATION CLASSES --- */
         .fade-up {
             opacity: 0;
-            transform: translateY(40px);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            transform: translateY(30px);
+            transition: opacity 0.8s cubic-bezier(0.25, 1, 0.5, 1), transform 0.8s cubic-bezier(0.25, 1, 0.5, 1);
         }
         .fade-up.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        .delay-1 { transition-delay: 0.1s; }
-        .delay-2 { transition-delay: 0.2s; }
-        .delay-3 { transition-delay: 0.3s; }
+        .delay-1 { transition-delay: 0.15s; }
+        .delay-2 { transition-delay: 0.3s; }
+        .delay-3 { transition-delay: 0.45s; }
 
-        /* --- ABOUT SECTION --- */
+        /* --- WELCOME / ABOUT SECTION --- */
+        .welcome-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 5rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
         .about-content {
-            text-align: center;
-            max-width: 900px;
-            margin: 0 auto;
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             color: var(--text-muted);
             line-height: 1.8;
+            text-align: justify;
+        }
+        .about-content p {
+            margin-bottom: 1.5rem;
+        }
+        .welcome-metrics {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+        .metric-card {
+            background: var(--white);
+            border-left: 4px solid var(--up-maroon);
+            padding: 1.5rem 2rem;
+            border-radius: 0 8px 8px 0;
+            box-shadow: var(--shadow-sm);
+            border-top: 1px solid var(--border-color);
+            border-right: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+        }
+        .metric-num {
+            font-family: var(--font-sans);
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--up-maroon);
+            line-height: 1.2;
+        }
+        .metric-label {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: 0.25rem;
         }
 
-        /* --- SPEAKERS SECTION --- */
-        .bg-gray {
-            background-color: var(--bg-gray);
-            max-width: 100%;
-        }
-        .speakers-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
+        /* --- GENERIC CAROUSEL FRAMEWORK --- */
+        .carousel-wrapper {
+            position: relative;
             max-width: 1200px;
             margin: 0 auto;
+            padding: 0 0.5rem;
         }
+        .carousel-container {
+            overflow: hidden;
+            width: 100%;
+        }
+        .carousel-track {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none; /* Firefox */
+            padding: 1.5rem 0.5rem; /* Room for card elevations/shadows */
+            margin: -1.5rem -0.5rem;
+        }
+        .carousel-track::-webkit-scrollbar {
+            display: none; /* Chrome/Safari */
+        }
+        .carousel-card {
+            flex: 0 0 calc(33.333% - 1.34rem);
+            min-width: 300px;
+        }
+        @media (max-width: 1024px) {
+            .carousel-card {
+                flex: 0 0 calc(50% - 1rem);
+            }
+        }
+        @media (max-width: 680px) {
+            .carousel-card {
+                flex: 0 0 100%;
+            }
+        }
+        .carousel-btn {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            color: var(--up-maroon);
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 10;
+            box-shadow: var(--shadow-md);
+            font-size: 1.75rem;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            user-select: none;
+        }
+        .carousel-btn:hover {
+            background: var(--up-maroon);
+            color: var(--white);
+            border-color: var(--up-maroon);
+            box-shadow: var(--shadow-lg);
+        }
+        .carousel-btn.prev { left: -24px; }
+        .carousel-btn.next { right: -24px; }
+        
+        @media (max-width: 1280px) {
+            .carousel-btn.prev { left: 10px; }
+            .carousel-btn.next { right: 10px; }
+        }
+
+        /* --- SPEAKERS MODIFICATIONS --- */
         .speaker-card {
             background: var(--white);
-            border-radius: 12px;
+            border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-            text-align: center;
-            transition: all 0.4s ease;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
             position: relative;
             cursor: pointer;
+            height: 100%;
         }
         .speaker-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 20px 40px rgba(123, 17, 19, 0.1);
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: rgba(123, 17, 19, 0.2);
+        }
+        .speaker-image-container {
+            position: relative;
+            overflow: hidden;
+            height: 320px;
+            background-color: var(--bg-gray);
         }
         .speaker-card img {
             width: 100%;
-            height: 300px;
+            height: 100%;
             object-fit: cover;
             transition: transform 0.5s ease;
         }
         .speaker-card:hover img {
-            transform: scale(1.05);
+            transform: scale(1.03);
         }
         .speaker-info {
-            padding: 2rem 1.5rem;
-            position: relative;
+            padding: 2rem;
             background: var(--white);
-            z-index: 2;
+            border-top: 1px solid var(--border-color);
         }
         .speaker-info h3 {
-            font-size: 1.4rem;
-            margin-bottom: 0.5rem;
+            font-size: 1.35rem;
+            margin-bottom: 0.4rem;
             color: var(--text-dark);
         }
         .speaker-info p {
             color: var(--up-maroon);
             font-size: 0.95rem;
-            font-weight: 500;
+            font-weight: 600;
         }
         .speaker-info .org {
             color: var(--text-muted);
             font-size: 0.85rem;
             font-weight: 400;
-            margin-top: 0.5rem;
+            margin-top: 0.4rem;
         }
         .click-hint {
-            display: inline-block;
-            margin-top: 1rem;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 1.2rem;
             font-size: 0.8rem;
-            color: var(--up-gold);
-            font-weight: 600;
-            opacity: 0;
-            transition: opacity 0.3s;
+            color: var(--up-gold-hover);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.8;
         }
-        .speaker-card:hover .click-hint {
-            opacity: 1;
+
+        /* --- INTERACTIVE PROGRAM SCHEDULE --- */
+        .schedule-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+        .tab-btn {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            padding: 0.8rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            cursor: pointer;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+            font-family: var(--font-sans);
+        }
+        .tab-btn:hover {
+            border-color: var(--up-maroon);
+            color: var(--up-maroon);
+        }
+        .tab-btn.active {
+            background: var(--up-maroon);
+            color: var(--white);
+            border-color: var(--up-maroon);
+            box-shadow: var(--shadow-sm);
+        }
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease forwards;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .timeline-wrapper {
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            padding: 1rem 2rem;
+        }
+        .timeline-row {
+            display: grid;
+            grid-template-columns: 180px 1fr;
+            padding: 2rem 0;
+            border-bottom: 1px solid var(--border-color);
+            align-items: baseline;
+        }
+        .timeline-row:last-child {
+            border-bottom: none;
+        }
+        .timeline-time {
+            font-weight: 700;
+            color: var(--up-maroon);
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .timeline-details h4 {
+            font-family: var(--font-sans);
+            color: var(--text-dark);
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+        .timeline-details p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+        .tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            border-radius: 4px;
+            text-transform: uppercase;
+            margin-bottom: 0.6rem;
+            background: var(--bg-gray);
+            color: var(--text-muted);
+        }
+        .tag-plenary {
+            background: var(--up-maroon-light);
+            color: var(--up-maroon);
+        }
+
+        /* --- RESEARCH WORKS MODIFICATIONS --- */
+        .research-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        .research-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(123, 17, 19, 0.2);
+        }
+        .research-tag {
+            align-self: flex-start;
+            background: var(--bg-gray);
+            color: var(--text-dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            margin-bottom: 1.2rem;
+            letter-spacing: 0.5px;
+        }
+        .research-card h3 {
+            font-family: var(--font-sans);
+            font-size: 1.2rem;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+            line-height: 1.4;
+        }
+        .research-authors {
+            color: var(--up-maroon);
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 1.2rem;
+        }
+        .research-abstract {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+        .research-link {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--up-gold-hover);
+            display: inline-flex;
+            align-items: center;
+            margin-top: auto;
+            cursor: pointer;
+        }
+        .research-link:hover {
+            color: var(--up-maroon);
+        }
+
+        /* --- ORGANIZERS SECTION --- */
+        .organizers-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2.5rem;
+            margin-top: 2rem;
+        }
+        .organizer-card {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-sm);
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        .organizer-card:hover {
+            border-color: rgba(123, 17, 19, 0.15);
+            box-shadow: var(--shadow-md);
+        }
+        .organizer-card-logo-container {
+            height: 55px;
+            display: flex;
+            align-items: center;
+        }
+        .organizer-card-logo-container img {
+            height: 100%;
+            width: auto;
+            object-fit: contain;
+        }
+        .organizer-card h3 {
+            font-family: var(--font-sans);
+            color: var(--text-dark);
+            font-size: 1.25rem;
+            font-weight: 600;
+            line-height: 1.4;
+        }
+        .organizer-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            text-align: justify;
         }
 
         /* --- MODAL STYLES --- */
         .modal-overlay {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.6);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
             z-index: 2000;
             display: flex;
             justify-content: center;
@@ -362,13 +687,13 @@
             background: var(--white);
             width: 90%;
             max-width: 650px;
-            border-radius: 16px;
-            padding: 3rem 2.5rem;
+            border-radius: 12px;
+            padding: 3.5rem 3rem;
             position: relative;
             text-align: center;
-            transform: translateY(30px);
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            box-shadow: 0 25px 50px rgba(0,0,0,0.2);
+            transform: translateY(20px);
+            transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
             max-height: 90vh;
             overflow-y: auto;
         }
@@ -379,223 +704,272 @@
             position: absolute;
             top: 20px;
             right: 25px;
-            font-size: 2rem;
+            font-size: 1.75rem;
             color: var(--text-muted);
             cursor: pointer;
             transition: color 0.2s;
-            line-height: 1;
         }
         .modal-close:hover {
             color: var(--up-maroon);
         }
         .modal-img {
-            width: 140px;
-            height: 140px;
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
             object-fit: cover;
-            border: 4px solid var(--up-maroon);
+            border: 3px solid var(--up-maroon);
             margin: 0 auto 1.5rem;
-            box-shadow: 0 10px 20px rgba(123, 17, 19, 0.2);
         }
         #modal-name {
-            font-size: 2rem;
+            font-size: 1.8rem;
             margin-bottom: 0.2rem;
         }
         #modal-role {
             color: var(--up-maroon);
             font-weight: 600;
-            font-size: 1.1rem;
+            font-size: 1.05rem;
         }
         #modal-org {
             color: var(--text-muted);
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             margin-bottom: 1.5rem;
         }
         #modal-bio {
             text-align: left;
             color: var(--text-muted);
-            font-size: 1.05rem;
-            line-height: 1.8;
-            border-top: 1px solid #eee;
+            font-size: 1rem;
+            line-height: 1.7;
+            border-top: 1px solid var(--border-color);
             padding-top: 1.5rem;
         }
 
-        /* --- SCHEDULE SECTION --- */
-        .schedule-table-wrapper {
-            background: var(--white);
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
-            overflow: hidden;
-        }
-        .schedule-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-        .schedule-table th, .schedule-table td {
-            padding: 1.5rem;
-            text-align: left;
-            border-bottom: 1px solid #eee;
-        }
-        .schedule-table th {
-            background-color: var(--up-maroon);
-            color: var(--white);
-            font-family: var(--font-serif);
-            font-size: 1.1rem;
-            font-weight: 600;
-            width: 33.33%;
-        }
-        .schedule-table tr {
-            transition: background-color 0.2s ease;
-        }
-        .schedule-table tr:hover td {
-            background-color: #fcf4f5;
-        }
-        .time-col {
-            font-weight: 600;
-            color: var(--up-maroon);
-            white-space: nowrap;
-            width: 20%;
+        /* Research Abstract Modal Text Alignment Override */
+        .research-modal-alignment {
+            text-align: left !important;
         }
 
         /* --- VENUE SECTION --- */
-        #venue {
-            padding: 7rem 2rem;
-        }
-
         .venue-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 1.5rem;
             margin-bottom: 4rem;
         }
-
         .venue-gallery img {
             width: 100%;
-            height: 250px;
+            height: 260px;
             object-fit: cover;
-            border-radius: 12px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            border-radius: 6px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
         }
-
         .venue-container {
             display: flex;
             flex-wrap: wrap;
             gap: 4rem;
             align-items: center;
         }
-
         .venue-info {
             flex: 1;
             min-width: 300px;
         }
-
+        .venue-info h3 {
+            font-size: 1.6rem;
+            margin-bottom: 0.5rem;
+        }
         .venue-map {
             flex: 1;
             min-width: 300px;
-            height: 350px;
-            background: #e0e0e0; /* Placeholder color */
-            border-radius: 12px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            height: 380px;
+            background: #cbd5e1;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
             position: relative;
+            border: 1px solid var(--border-color);
+            overflow: hidden;
         }
-
-        /* Keeps the map label visible */
         .venue-map::after {
             content: 'Map Integration Placeholder';
             position: absolute;
-            top: 50%;
-            left: 50%;
+            top: 50%; left: 50%;
             transform: translate(-50%, -50%);
-            color: #777;
+            color: var(--text-muted);
             font-weight: 600;
+            font-size: 0.95rem;
         }
+
+        /* --- FAQ SECTION --- */
+        .faq-max-width {
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            background: var(--white);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-bottom: 1.2rem;
+            overflow: hidden;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+        }
+        .faq-item:hover {
+            border-color: rgba(123, 17, 19, 0.2);
+            box-shadow: var(--shadow-sm);
+        }
+        .faq-question {
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.05rem;
+            color: var(--text-dark);
+            user-select: none;
+            transition: color 0.2s ease;
+        }
+        .faq-item.active .faq-question {
+            color: var(--up-maroon);
+        }
+        .faq-question-icon {
+            font-family: var(--font-sans);
+            font-size: 1.4rem;
+            font-weight: 300;
+            color: var(--up-maroon);
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            line-height: 1;
+        }
+        .faq-item.active .faq-question-icon {
+            transform: rotate(45deg);
+        }
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .faq-answer-inner {
+            padding: 0.5rem 2rem 1.5rem 2rem;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
         /* --- CTA SECTION --- */
         .cta-section {
             text-align: center;
-            background: linear-gradient(135deg, var(--up-maroon) 0%, #3a0809 100%);
+            background: linear-gradient(135deg, var(--up-maroon-dark) 0%, #2e0506 100%);
             color: var(--white);
             max-width: 100%;
+            position: relative;
+        }
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-image: radial-gradient(rgba(255,255,255,0.1) 1px, transparent 0);
+            background-size: 24px 24px;
+            opacity: 0.4;
+        }
+        .cta-container {
+            position: relative;
+            z-index: 2;
+            max-width: 700px;
+            margin: 0 auto;
         }
         .cta-section h2 {
             color: var(--white);
         }
-        .cta-section h2::after {
-            background: var(--up-gold);
-        }
         .cta-section p {
-            font-size: 1.2rem;
+            font-size: 1.25rem;
             margin-bottom: 3rem;
-            opacity: 0.9;
+            color: rgba(255,255,255,0.85);
+            font-weight: 300;
         }
 
         /* --- FOOTER --- */
         footer {
-            background-color: #111;
-            color: #888;
+            background-color: #0f172a;
+            color: #94a3b8;
             text-align: center;
-            padding: 4rem 2rem 2rem;
+            padding: 5rem 2rem 3rem;
+            border-top: 4px solid var(--up-maroon);
         }
         .footer-organizers {
-            margin-bottom: 3rem;
-            padding-bottom: 3rem;
-            border-bottom: 1px solid #333;
+            margin-bottom: 3.5rem;
+            padding-bottom: 3.5rem;
+            border-bottom: 1px solid #334155;
         }
         .footer-organizers h4 {
             color: var(--white);
             font-family: var(--font-sans);
-            font-weight: 500;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 2px;
-            font-size: 0.9rem;
-            margin-bottom: 1.5rem;
+            letter-spacing: 1.5px;
+            font-size: 0.85rem;
+            margin-bottom: 2rem;
         }
         .footer-logos {
             display: flex;
             justify-content: center;
-            align-items: center;
-            gap: 3rem;
+            align-items: flex-start;
+            gap: 4rem;
             flex-wrap: wrap;
         }
+        .logo-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            max-width: 180px;
+        }
         .footer-logos img {
-            height: 70px; /* Adjust this height for footer logos */
+            height: 60px;
             width: auto;
             object-fit: contain;
-            /* filter: grayscale(100%) brightness(200%); Makes them look uniform in footer; remove if you want full color */
-            /* opacity: 0.7; */
-            transition: all 0.3s ease;
         }
-        /* .footer-logos img:hover {
-            filter: grayscale(0%) brightness(100%);
-            opacity: 1;
-        } */
+        .logo-group p {
+            font-size: 0.75rem;
+            line-height: 1.4;
+            color: #64748b;
+            font-weight: 500;
+        }
         footer p {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
         }
 
-        /* --- RESPONSIVE --- */
-        @media (max-width: 900px) {
-            .hero h1 { font-size: 3rem; }
+        /* --- KEYFRAMES --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 1024px) {
             nav { padding: 1rem 2rem; }
-            .nav-logos img { height: 35px; } /* Smaller logos on mobile */
-            .nav-logos { gap: 0.5rem; }
+            .nav-links { gap: 1rem; }
+        }
+        @media (max-width: 900px) {
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { font-size: 1.2rem; }
+            .welcome-grid { grid-template-columns: 1fr; gap: 3rem; }
+            .timeline-row { grid-template-columns: 1fr; gap: 0.5rem; }
             
             .nav-links {
                 display: none;
                 flex-direction: column;
                 position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
+                top: 100%; left: 0; width: 100%;
                 background: rgba(255, 255, 255, 0.98);
                 padding: 2rem 0;
-                box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+                border-bottom: 1px solid var(--border-color);
+                box-shadow: var(--shadow-md);
+                gap: 1.5rem;
             }
             .nav-links.active { display: flex; }
             .mobile-menu-btn { display: block; }
-            .schedule-table-wrapper { overflow-x: auto; }
-            
-            .footer-logos { gap: 1.5rem; }
-            .footer-logos img { height: 50px; }
+        }
+
+        #register-nav-btn {
+            color: var(--white);
         }
     </style>
 </head>
@@ -605,11 +979,9 @@
     <nav id="navbar">
         <div class="nav-brand">
             <div class="nav-logos">
-                <img src="./images/upd_logo.png" alt="UP Logo">
-                <img src="./images/upss.png" alt="School of Stat Logo">
                 <img src="./images/brg_logo_sub_colored.png" alt="BioStat Group Logo">
             </div>
-            <div class="nav-title" style="text-align: center;">Symposium on Biostatistics</div>
+            <div class="nav-title">Symposium on Biostatistics</div>
         </div>
         
         <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
@@ -618,72 +990,109 @@
             <li><a href="#about">About</a></li>
             <li><a href="#speakers">Speakers</a></li>
             <li><a href="#schedule">Schedule</a></li>
+            <li><a href="#research">Research</a></li>
             <li><a href="#venue">Venue</a></li>
-            <li><a href="#register" class="btn nav-btn" style="color: white; padding: 0.6rem 1.5rem;">Register</a></li>
+            <li><a href="#organizers">Organizers</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a id="register-nav-btn" href="#register" class="btn nav-btn">Register</a></li>
         </ul>
     </nav>
-
 
     <!-- HERO SECTION -->
     <header class="hero" id="home">
         <div class="hero-content fade-up">
             <div class="hero-date">September 14-15, 2026 &nbsp;|&nbsp; UP Diliman</div>
-            <h1>Symposium on Biostatistics</h1>
-            <p>Advancing Biostatistics Through Research and Collaboration</p>
-            <a href="#register" class="btn btn-gold">Secure Your Spot</a>
+            <h1>Symposium on<br>Biostatistics</h1>
+            <p>Advancing Statistical Methodology in Clinical and Public Health Domains</p>
+            <a href="#register" class="btn btn-gold">Secure Your Registration</a>
         </div>
     </header>
 
-    <!-- ABOUT SECTION -->
+    <!-- WELCOME / ABOUT SECTION (White) -->
     <section id="about">
         <h2 class="fade-up">Welcome</h2>
-        <div class="about-content fade-up delay-1">
-            <p>The UP School of Statistics invites statisticians, biostatisticians, epidemiologists, students, practitioners of statistics in the industry and government, and other enthusiasts to the <strong>Symposium on Biostatistics 2026</strong>. The event is a two-day conference that features speakers from prominent researchers in biostatistics and epidemiology from prestigious international and local institutions, as well as early-career researchers in biostatistics.</p>
+        <div class="welcome-grid">
+            <div class="about-content fade-up delay-1">
+                <p>The UP School of Statistics cordially invites statisticians, biostatisticians, epidemiologists, practitioners, and student researchers to the <strong>Symposium on Biostatistics 2026</strong>. This premier two-day event serves as a critical academic nexus for modern data science methodologies applied to health and biological tracking frameworks.</p>
+                <p>This iteration features distinguished global and local plenary authorities showcasing cross-sectional analytical innovations, along with promising tracks spearheaded by early-career mathematical biostatisticians.</p>
+            </div>
+            <div class="welcome-metrics fade-up delay-2">
+                <div class="metric-card">
+                    <div class="metric-num">02</div>
+                    <div class="metric-label">Days of Rigorous Academic Tracks</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-num">15+</div>
+                    <div class="metric-label">International & Local Presenters</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-num">100%</div>
+                    <div class="metric-label">Open-Access Methodological Exchange</div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- SPEAKERS SECTION -->
+    <!-- SPEAKERS SECTION (Gray Wrapper Carousel) -->
     <div class="bg-gray">
         <section id="speakers">
-            <h2 class="fade-up">Distinguished Speakers</h2>
-            <p class="section-subtitle fade-up delay-1">Learn from the forefront of statistical research</p>
+            <h2 class="fade-up">Keynote Speakers</h2>
+            <p class="section-subtitle fade-up delay-1">Engage with elite researchers at the frontiers of spatial epidemiology and statistical computing</p>
             
-            <div class="speakers-grid">
-                <!-- Speaker 1 -->
-                <div class="speaker-card fade-up delay-1" onclick="openModal('reyes')">
-                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dr. Elena Reyes">
-                    <div class="speaker-info">
-                        <h3>Dr. Elena Reyes</h3>
-                        <p>Professor of Epidemiology</p>
-                        <div class="org">University of the Philippines Manila</div>
-                        <span class="click-hint">View Profile &rarr;</span>
+            <div class="carousel-wrapper fade-up delay-2">
+                <button class="carousel-btn prev" onclick="navigateCarousel('speakers-track', -1)">&lsaquo;</button>
+                <div class="carousel-container">
+                    <div id="speakers-track" class="carousel-track">
+                        <!-- Speaker Card 1 -->
+                        <div class="carousel-card">
+                            <div class="speaker-card" onclick="openModal('reyes')">
+                                <div class="speaker-image-container">
+                                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dr. Elena Reyes">
+                                </div>
+                                <div class="speaker-info">
+                                    <h3>Dr. Elena Reyes</h3>
+                                    <p>Professor of Epidemiology</p>
+                                    <div class="org">University of the Philippines Manila</div>
+                                    <span class="click-hint">View Academic Profile &rarr;</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Speaker Card 2 -->
+                        <div class="carousel-card">
+                            <div class="speaker-card" onclick="openModal('cruz')">
+                                <div class="speaker-image-container">
+                                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dr. Antonio Cruz">
+                                </div>
+                                <div class="speaker-info">
+                                    <h3>Dr. Antonio Cruz</h3>
+                                    <p>Director of Data Analytics</p>
+                                    <div class="org">Department of Health</div>
+                                    <span class="click-hint">View Academic Profile &rarr;</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Speaker Card 3 -->
+                        <div class="carousel-card">
+                            <div class="speaker-card" onclick="openModal('santos')">
+                                <div class="speaker-image-container">
+                                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dr. Maria Santos">
+                                </div>
+                                <div class="speaker-info">
+                                    <h3>Dr. Maria Santos</h3>
+                                    <p>Chief Biostatistician</p>
+                                    <div class="org">Global Health Metrics Institute</div>
+                                    <span class="click-hint">View Academic Profile &rarr;</span>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <!-- Speaker 2 -->
-                <div class="speaker-card fade-up delay-2" onclick="openModal('cruz')">
-                    <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dr. Antonio Cruz">
-                    <div class="speaker-info">
-                        <h3>Dr. Antonio Cruz</h3>
-                        <p>Director of Data Analytics</p>
-                        <div class="org">Department of Health</div>
-                        <span class="click-hint">View Profile &rarr;</span>
-                    </div>
-                </div>
-                <!-- Speaker 3 -->
-                <div class="speaker-card fade-up delay-3" onclick="openModal('santos')">
-                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&auto=format&fit=crop&w=600&q=80" alt="Dr. Maria Santos">
-                    <div class="speaker-info">
-                        <h3>Dr. Maria Santos</h3>
-                        <p>Chief Biostatistician</p>
-                        <div class="org">Global Health Metrics Institute</div>
-                        <span class="click-hint">View Profile &rarr;</span>
-                    </div>
-                </div>
+                <button class="carousel-btn next" onclick="navigateCarousel('speakers-track', 1)">&rsaquo;</button>
             </div>
         </section>
     </div>
 
-    <!-- SPEAKER MODAL -->
+    <!-- SPEAKER PROFILE MODAL -->
     <div id="speakerModal" class="modal-overlay">
         <div class="modal-content">
             <span class="modal-close" onclick="closeModal()">&times;</span>
@@ -695,130 +1104,351 @@
         </div>
     </div>
 
-    <!-- SCHEDULE SECTION -->
+    <!-- SCHEDULE SECTION (White) -->
     <section id="schedule">
         <h2 class="fade-up">Program Schedule</h2>
-        <p class="section-subtitle fade-up delay-1">Two days of insightful presentations and networking</p>
+        <p class="section-subtitle fade-up delay-1">A timeline of interactive keynotes, technical sessions, and academic peer networking panels</p>
         
-        <div class="schedule-table-wrapper fade-up delay-2">
-            <table class="schedule-table">
-                <thead>
-                    <tr>
-                        <th class="time-col">Time</th>
-                        <th>Day 1 (Sept 14)</th>
-                        <th>Day 2 (Sept 15)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td class="time-col">08:00 AM</td>
-                        <td>Registration & Coffee</td>
-                        <td>Morning Plenary</td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">09:30 AM</td>
-                        <td>Opening Ceremonies & Keynote</td>
-                        <td>Panel: Predictive Modeling</td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">12:00 PM</td>
-                        <td>Lunch Break</td>
-                        <td>Lunch Break</td>
-                    </tr>
-                    <tr>
-                        <td class="time-col">01:30 PM</td>
-                        <td>Poster Presentations</td>
-                        <td>Closing Remarks & Awards</td>
-                    </tr>
-                </tbody>
-            </table>
+        <div class="schedule-tabs fade-up delay-1">
+            <button class="tab-btn active" onclick="switchDay(1, this)">Day 1 (Sept 14)</button>
+            <button class="tab-btn" onclick="switchDay(2, this)">Day 2 (Sept 15)</button>
+        </div>
+
+        <div id="day1-content" class="tab-content active fade-up delay-2">
+            <div class="timeline-wrapper">
+                <div class="timeline-row">
+                    <div class="timeline-time">08:00 AM</div>
+                    <div class="timeline-details">
+                        <span class="tag">Administrative</span>
+                        <h4>Registration & Morning Coffee</h4>
+                        <p>Distribution of symposium materials, badges, and credentials at the main lobby corridor.</p>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-time">09:30 AM</div>
+                    <div class="timeline-details">
+                        <span class="tag tag-plenary">Plenary</span>
+                        <h4>Opening Ceremonies & Opening Keynote Address</h4>
+                        <p>Introductory institutional alignments followed by overarching directions in contemporary statistical metrics.</p>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-time">12:00 PM</div>
+                    <div class="timeline-details">
+                        <span class="tag">Intermission</span>
+                        <h4>Catered Lunch Break</h4>
+                        <p>Dedicated breakout networking arrangements hosted within the secondary quadrangle parameters.</p>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-time">01:30 PM</div>
+                    <div class="timeline-details">
+                        <span class="tag">Research Exhibition</span>
+                        <h4>Poster Presentations & Peer Review</h4>
+                        <p>Curated showcase detailing early-career researcher abstracts across clinical modeling tracks.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="day2-content" class="tab-content fade-up">
+            <div class="timeline-wrapper">
+                <div class="timeline-row">
+                    <div class="timeline-time">08:00 AM</div>
+                    <div class="timeline-details">
+                        <span class="tag tag-plenary">Plenary</span>
+                        <h4>Morning Plenary Session</h4>
+                        <p>Methodological updates concerning non-parametric estimations within complex epidemiological frameworks.</p>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-time">09:30 AM</div>
+                    <div class="timeline-details">
+                        <span class="tag">Interactive Panel</span>
+                        <h4>Panel Discussion: Predictive Modeling Systems</h4>
+                        <p>Analyzing structural transitions across public health registries and governance predictive tools.</p>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-time">12:00 PM</div>
+                    <div class="timeline-details">
+                        <span class="tag">Intermission</span>
+                        <h4>Lunch Break & Networking Concierge</h4>
+                        <p>Strategic collaborative assemblies for multi-institutional research partnerships.</p>
+                    </div>
+                </div>
+                <div class="timeline-row">
+                    <div class="timeline-time">01:30 PM</div>
+                    <div class="timeline-details">
+                        <span class="tag">Valedictory</span>
+                        <h4>Closing Remarks & Best Abstract Awards</h4>
+                        <p>Concluding evaluations, awarding of academic excellence tokens, and future projections.</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- VENUE SECTION -->
+    <!-- RESEARCH WORKS SECTION (Gray Wrapper Carousel) -->
     <div class="bg-gray">
-        <section id="venue">
-            <h2 class="fade-up">The Venue</h2>
-            
-            <!-- Gallery Area -->
-            <div class="venue-gallery fade-up delay-1">
-                <img src="./images/audi.jpg" alt="Main Auditorium">
-                <img src="./images/lobby.jpg" alt="Lobby Area">
-                <img src="./images/exterior.jpg" alt="Building Exterior">
-            </div>
+        <section id="research">
+            <h2 class="fade-up">Research Works</h2>
+            <p class="section-subtitle fade-up delay-1">Highlighting pioneering academic studies in biostatistical methodology and localized clinical applications</p>
 
-            <!-- Info and Map Area -->
-            <div class="venue-container" style="margin-top: 4rem;">
-                <div class="venue-info fade-up">
-                    <h3>School of Statistics Auditorium</h3>
-                    <p><strong>UP Diliman, Quezon City, Philippines</strong></p>
-                    <p style="margin-top: 1rem;">The symposium will be held in the newly upgraded facilities of the UP School of Statistics. The venue offers state-of-the-art audiovisual equipment, dedicated spaces for poster presentations, and comfortable lounges for academic networking.</p>
+            <div class="carousel-wrapper fade-up delay-2">
+                <button class="carousel-btn prev" onclick="navigateCarousel('research-track', -1)">&lsaquo;</button>
+                <div class="carousel-container">
+                    <div id="research-track" class="carousel-track">
+                        <!-- Research Card 1 -->
+                        <div class="carousel-card">
+                            <div class="research-card">
+                                <span class="research-tag">Epidemiology</span>
+                                <h3>Spatial Modeling of Dengue Outbreaks in Urban Environments</h3>
+                                <p class="research-authors">M. Santos, J. Dela Cruz</p>
+                                <p class="research-abstract">A non-parametric approach to mapping high-risk zones using real-time climatic and demographic variables across the localized districts of Metro Manila to guide immediate public interventions.</p>
+                                <a href="javascript:void(0)" onclick="openResearchModal('dengue-spatial')" class="research-link">Read Abstract &rarr;</a>
+                            </div>
+                        </div>
+                        <!-- Research Card 2 -->
+                        <div class="carousel-card">
+                            <div class="research-card">
+                                <span class="research-tag">Clinical Trials</span>
+                                <h3>Non-parametric Survival Analysis in Oncology Data</h3>
+                                <p class="research-authors">A. Rivera, E. Reyes</p>
+                                <p class="research-abstract">Evaluating adjustments for unobserved heterogeneity and self-reported biases in survival timelines among patients participating in longitudinal cancer treatment therapies.</p>
+                                <a href="javascript:void(0)" onclick="openResearchModal('oncology-survival')" class="research-link">Read Abstract &rarr;</a>
+                            </div>
+                        </div>
+                        <!-- Research Card 3 -->
+                        <div class="carousel-card">
+                            <div class="research-card">
+                                <span class="research-tag">Computational Health</span>
+                                <h3>Algorithmic Bias Reduction in Health Registries</h3>
+                                <p class="research-authors">T. Villanueva, C. Bautista</p>
+                                <p class="research-abstract">Proposing structural mathematical adjustments to correct implicit systemic biases prevalent in historical national health databases using novel imputation algorithms.</p>
+                                <a href="javascript:void(0)" onclick="openResearchModal('bias-reduction')" class="research-link">Read Abstract &rarr;</a>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="venue-map fade-up delay-2">
-                    <!-- Your Map Integration Placeholder -->
+                <button class="carousel-btn next" onclick="navigateCarousel('research-track', 1)">&rsaquo;</button>
+            </div>
+        </section>
+    </div>
+
+    <!-- RESEARCH ABSTRACT MODAL -->
+    <div id="researchModal" class="modal-overlay">
+        <div class="modal-content research-modal-alignment">
+            <span class="modal-close" onclick="closeResearchModal()">&times;</span>
+            <span id="res-modal-tag" class="research-tag">Tag Name</span>
+            <h3 id="res-modal-title" style="margin-top: 0.6rem; margin-bottom: 0.4rem; font-size: 1.6rem; font-family: var(--font-sans); color: var(--text-dark);">Research Paper Title</h3>
+            <p id="res-modal-authors" class="research-authors" style="margin-bottom: 1.5rem;">Authors list</p>
+            <div id="res-modal-abstract" style="border-top: 1px solid var(--border-color); padding-top: 1.5rem; color: var(--text-muted); font-size: 1rem; line-height: 1.8; text-align: justify;">
+                Full abstract text description.
+            </div>
+        </div>
+    </div>
+
+    <!-- VENUE SECTION -->
+    <section id="venue">
+        <h2 class="fade-up">The Venue</h2>
+        <p class="section-subtitle fade-up delay-1">Hosted within the state-of-the-art technical hubs of UP Diliman</p>
+        
+        <div class="venue-gallery fade-up delay-1">
+            <img src="./images/audi.jpg" alt="Main Auditorium Space">
+            <img src="./images/lobby.jpg" alt="Exhibition Lobby Area">
+            <img src="./images/exterior.jpg" alt="UPSS Building Exterior Architecture">
+        </div>
+
+        <div class="venue-container">
+            <div class="venue-info fade-up">
+                <h3>School of Statistics Auditorium</h3>
+                <p style="color: var(--up-maroon); font-weight: 600;">UP Diliman, Quezon City, Philippines</p>
+                <p style="margin-top: 1rem; text-align: justify;">The symposium exercises full utilization of the freshly upgraded technical architecture at the UP School of Statistics. The physical ecosystem guarantees high-fidelity audio-visual pipelines, custom spaces for interactive visual media galleries, and adjacent academic lounges engineered for breakout networking.</p>
+            </div>
+            <div class="venue-map fade-up delay-2">
+                <!-- Leaflet / Google Embed Map Container Layer -->
+            </div>
+        </div>
+    </section>
+
+    <!-- ORGANIZERS SECTION (White) -->
+    <div class="bg-gray">
+        <section id="organizers">
+            <h2 class="fade-up">The Organizers</h2>
+            <p class="section-subtitle fade-up delay-1">The host institutions bringing together global statistical innovation and health analytics parameters</p>
+            
+            <div class="organizers-grid fade-up delay-2">
+                <div class="organizer-card">
+                    <div class="organizer-card-logo-container">
+                        <img src="./images/upd_logo.png" alt="UP Diliman Shield Logo">
+                    </div>
+                    <h3>University of the Philippines Diliman</h3>
+                    <p>As the flagship campus of the national university system, UP Diliman provides systemic infrastructure and state-funded backing to support cross-disciplinary research paradigms targeting major sustainable public wellness metrics.</p>
+                </div>
+                <div class="organizer-card">
+                    <div class="organizer-card-logo-container">
+                        <img src="./images/upss.png" alt="UP School of Statistics Logo">
+                    </div>
+                    <h3>UP School of Statistics</h3>
+                    <p>Established as the premier statistical teaching body in the country, the UPSS is globally recognized for cultivating high-precision computational theorists, statistical consultants, and computational architects of national databases.</p>
+                </div>
+                <div class="organizer-card">
+                    <div class="organizer-card-logo-container">
+                        <img src="./images/brg_logo_sub_colored.png" alt="Biostatistics Research Group Logo">
+                    </div>
+                    <h3>Biostatistics Research Group</h3>
+                    <p>A specialized research unit within the UPSS framework, the BRG isolates and evaluates non-parametric survival thresholds, spatial mapping layers, and high-dimensional diagnostic mathematical proofs applied directly to localized health concerns.</p>
                 </div>
             </div>
         </section>
     </div>
 
+    <!-- FAQ SECTION (White) -->
+    <section id="faq">
+        <h2 class="fade-up">Frequently Asked Questions</h2>
+        <p class="section-subtitle fade-up delay-1">Answers to key institutional questions regarding participation tracks and administrative guidelines</p>
+        
+        <div class="faq-max-width fade-up delay-2">
+            <!-- FAQ Item 1 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Who should register for this academic symposium?</span>
+                    <div class="faq-question-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>The sessions are strictly tailored for professional biostatisticians, clinical research practitioners, health inspectors, data scientists, epidemiological modeling specialists, and advanced graduate students interested in mathematical biology implementations.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- FAQ Item 2 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is there an option to access the tracks virtually?</span>
+                    <div class="faq-question-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>No. To enforce active interactive peer verification networks, abstract visual defenses, and structural computational networking groups, the 2026 conference is completely restricted to physical on-site entry modules inside the UPSS facilities.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- FAQ Item 3 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How can early-career researchers submit poster abstracts?</span>
+                    <div class="faq-question-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Abstract templates can be acquired directly via the registration checkout interface. Submissions require a 300-word methodological focus summary and must be logged by August 1, 2026, to clear blind academic peer-review assignments.</p>
+                    </div>
+                </div>
+            </div>
+            <!-- FAQ Item 4 -->
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Will accredited certificates of completion be issued?</span>
+                    <div class="faq-question-icon">+</div>
+                </div>
+                <div class="faq-answer">
+                    <div class="faq-answer-inner">
+                        <p>Yes. Registered participants who verify their attendance across both academic tracks will be presented with authenticated institutional certificates of attendance stamped by the UP School of Statistics upon valedictory closing cycles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- CTA / REGISTRATION -->
     <section id="register" class="cta-section">
-        <div class="fade-up">
+        <div class="cta-container fade-up">
             <h2>Call for Registration</h2>
-            <p>Secure your attendance for this premier event. Spaces are limited.</p>
-            <a href="#" class="btn btn-gold" style="font-size: 1.1rem; padding: 1.2rem 3rem;">Register for the Symposium</a>
+            <p>Seating capacities within the auditorium footprint are strictly regulated for spatial research modules. Secure your enrollment profile immediately.</p>
+            <a href="#" class="btn btn-gold" style="font-size: 1.05rem; padding: 1.2rem 3rem; border-radius: 4px;">Register for the Symposium</a>
         </div>
     </section>
 
     <!-- FOOTER -->
     <footer>
         <div class="footer-organizers">
-            <h4>Organized By</h4>
+            <h4>Organized and Hosted By</h4>
             <div class="footer-logos">
-                <!-- Institution 1 -->
                 <div class="logo-group">
                     <img src="./images/upd_logo.png" alt="University of the Philippines Logo">
-                    <p>University of the Philippines (UP) Diliman</p>
+                    <p>University of the Philippines Diliman</p>
                 </div>
-                <!-- Institution 2 -->
                 <div class="logo-group">
                     <img src="./images/upss.png" alt="School of Statistics Logo">
                     <p>UP School of Statistics (UPSS)</p>
                 </div>
-                <!-- Institution 3 -->
                 <div class="logo-group">
                     <img src="./images/brg_logo_sub_colored.png" alt="Biostatistics Research Group Logo">
                     <p>UPSS Biostatistics Research Group</p>
                 </div>
             </div>
         </div>
-        <p>&copy; 2026 Symposium on Biostatistics. All rights reserved.</p>
-        <p style="margin-top: 0.5rem;">stat.upd.edu.ph | symposium@stat.upd.edu.ph</p>
+        <p>&copy; 2026 Symposium on Biostatistics. All academic and methodology rights reserved.</p>
+        <p style="margin-top: 0.5rem; color: #475569; font-size: 0.8rem;">stat.upd.edu.ph &bull; symposium@stat.upd.edu.ph</p>
     </footer>
 
-    <!-- JAVASCRIPT -->
+    <!-- JAVASCRIPT CORNER -->
     <script>
-        // Mobile Navigation Toggle
+        // Mobile Navigation Toggle Controller
         function toggleMenu() {
             document.querySelector('.nav-links').classList.toggle('active');
         }
 
-        // Smooth Scroll for Anchors
+        // Program Day Tab Switch Logic
+        function switchDay(dayNum, targetButton) {
+            document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+            
+            targetButton.classList.add('active');
+            document.getElementById(`day${dayNum}-content`).classList.add('active');
+        }
+
+        // Smooth Scroll Page Anchor Pipeline
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if(targetId === '#') return;
+                
                 e.preventDefault();
-                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                document.querySelector(targetId).scrollIntoView({
                     behavior: 'smooth'
                 });
                 document.querySelector('.nav-links').classList.remove('active');
             });
         });
 
-        // Scroll Animation (Intersection Observer)
+        // Bug-Free Accordion FAQ Architecture via exact scrollHeight evaluation
+        document.querySelectorAll('.faq-question').forEach(item => {
+            item.addEventListener('click', () => {
+                const faqItem = item.parentElement;
+                const answer = faqItem.querySelector('.faq-answer');
+                const isActive = faqItem.classList.contains('active');
+                
+                // Collapse open options globally
+                document.querySelectorAll('.faq-item').forEach(el => {
+                    el.classList.remove('active');
+                    el.querySelector('.faq-answer').style.maxHeight = null;
+                });
+
+                // Set fixed scrollHeight to exact container size minus transition padding interference
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                    answer.style.maxHeight = answer.scrollHeight + "px";
+                }
+            });
+        });
+
+        // Intersection Observer Animation Protocol
         const observerOptions = {
             root: null,
             rootMargin: '0px',
-            threshold: 0.15
+            threshold: 0.1
         };
 
         const observer = new IntersectionObserver((entries, observer) => {
@@ -834,19 +1464,41 @@
             observer.observe(el);
         });
 
-        // Navbar shrink on scroll
+        // Dynamic Sticky Header Evaluator
         window.addEventListener('scroll', () => {
             const nav = document.getElementById('navbar');
-            if (window.scrollY > 50) {
+            if (window.scrollY > 40) {
                 nav.style.padding = '0.8rem 4rem';
-                nav.style.boxShadow = '0 4px 20px rgba(0,0,0,0.05)';
+                nav.style.boxShadow = '0 10px 30px -10px rgba(15, 23, 42, 0.08)';
+                nav.style.background = 'rgba(255, 255, 255, 0.95)';
             } else {
                 nav.style.padding = '1.2rem 4rem';
                 nav.style.boxShadow = 'none';
+                nav.style.background = 'rgba(255, 255, 255, 0.8)';
             }
         });
 
-        // Speaker Modal Logic (Placeholder Data)
+        // --- HARDWARE ACCELERATED CAROUSEL PIPELINE ---
+        function navigateCarousel(trackId, direction) {
+            const track = document.getElementById(trackId);
+            if (!track) return;
+            
+            const firstCard = track.querySelector('.carousel-card');
+            if (!firstCard) return;
+
+            const cardWidth = firstCard.offsetWidth;
+            const gapWidth = parseFloat(window.getComputedStyle(track).gap) || 0;
+            
+            // Computes travel amount dynamically based on responsive sizes
+            const slideDistance = (cardWidth + gapWidth) * direction;
+            
+            track.scrollBy({
+                left: slideDistance,
+                behavior: 'smooth'
+            });
+        }
+
+        // Pre-fetched Academic Profile Storage
         const speakerData = {
             'reyes': {
                 name: 'Dr. Elena Reyes',
@@ -871,7 +1523,30 @@
             }
         };
 
-        const modal = document.getElementById('speakerModal');
+        // Pre-fetched Research Abstract Storage
+        const researchData = {
+            'dengue-spatial': {
+                tag: 'Epidemiology',
+                title: 'Spatial Modeling of Dengue Outbreaks in Urban Environments',
+                authors: 'M. Santos, J. Dela Cruz',
+                abstract: 'A non-parametric approach to mapping high-risk zones using real-time climatic and demographic variables across the localized districts of Metro Manila to guide immediate public interventions. This project develops highly dynamic predictive layers by parsing environmental sensor data alongside crowded township records. The structural outputs present granular hazard matrices, offering public health personnel up to 14 days of preventative warning before vector saturation triggers localized outbreaks.'
+            },
+            'oncology-survival': {
+                tag: 'Clinical Trials',
+                title: 'Non-parametric Survival Analysis in Oncology Data',
+                authors: 'A. Rivera, E. Reyes',
+                abstract: 'Evaluating adjustments for unobserved heterogeneity and self-reported biases in survival timelines among patients participating in longitudinal cancer treatment therapies. By applying modern alternative mathematical transformations to standard survival matrices, this research effectively neutralizes complex multi-institution tracking fragmentation errors. The models provide reliable, clinical-grade trajectory insights even when dealing with sparse or highly truncated cohort registries.'
+            },
+            'bias-reduction': {
+                tag: 'Computational Health',
+                title: 'Algorithmic Bias Reduction in Health Registries',
+                authors: 'T. Villanueva, C. Bautista',
+                abstract: 'Proposing structural mathematical adjustments to correct implicit systemic biases prevalent in historical national health databases using novel imputation algorithms. Historically, peripheral data channels from rural medical hubs suffer from chronic diagnostic reporting lag and metadata omission. This methodology constructs balanced, adaptive neural-imputation matrices that systematically adjust weighting disparities, restoring reliable population tracking insights.'
+            }
+        };
+
+        // --- SPEAKER MODAL LOGIC ---
+        const speakerModal = document.getElementById('speakerModal');
 
         function openModal(speakerId) {
             const data = speakerData[speakerId];
@@ -883,18 +1558,43 @@
             document.getElementById('modal-org').innerText = data.org;
             document.getElementById('modal-bio').innerText = data.bio;
 
-            modal.classList.add('active');
+            speakerModal.classList.add('active');
             document.body.style.overflow = 'hidden';
         }
 
         function closeModal() {
-            modal.classList.remove('active');
+            speakerModal.classList.remove('active');
             document.body.style.overflow = 'auto';
         }
 
-        modal.addEventListener('click', function(e) {
-            if (e.target === modal) {
+        // --- RESEARCH MODAL LOGIC ---
+        const researchModal = document.getElementById('researchModal');
+
+        function openResearchModal(researchId) {
+            const data = researchData[researchId];
+            if(!data) return;
+
+            document.getElementById('res-modal-tag').innerText = data.tag;
+            document.getElementById('res-modal-title').innerText = data.title;
+            document.getElementById('res-modal-authors').innerText = data.authors;
+            document.getElementById('res-modal-abstract').innerText = data.abstract;
+
+            researchModal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeResearchModal() {
+            researchModal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // --- GLOBAL EXTERNAL CLICK CLOSURE HANDLER ---
+        window.addEventListener('click', function(e) {
+            if (e.target === speakerModal) {
                 closeModal();
+            }
+            if (e.target === researchModal) {
+                closeResearchModal();
             }
         });
     </script>
