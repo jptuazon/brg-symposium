@@ -206,6 +206,45 @@
             color: var(--up-maroon);
         }
 
+        /* Nav Dropdown Styling */
+        .dropdown {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--white);
+            min-width: 150px;
+            box-shadow: var(--shadow-md);
+            border: 1px solid var(--border-color);
+            z-index: 1001;
+            border-radius: 6px;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 0.5rem 0;
+            flex-direction: column;
+        }
+        .dropdown:hover .dropdown-content {
+            display: flex;
+        }
+        .dropdown-content a {
+            padding: 0.6rem 1.5rem;
+            color: var(--text-dark);
+            font-size: 0.85rem;
+            text-align: center;
+            white-space: nowrap;
+        }
+        .dropdown-content a::after {
+            display: none;
+        }
+        .dropdown-content a:hover {
+            background-color: var(--bg-gray);
+            color: var(--up-maroon);
+        }
+
         /* --- HERO SECTION --- */
         .hero {
             position: relative;
@@ -395,6 +434,16 @@
         }
         .carousel-btn.prev { left: -24px; }
         .carousel-btn.next { right: -24px; }
+        
+        .carousel-counter {
+            text-align: center;
+            font-family: var(--font-sans);
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+            margin-top: 1rem;
+            letter-spacing: 0.5px;
+        }
         
         @media (max-width: 1280px) {
             .carousel-btn.prev { left: 10px; }
@@ -854,6 +903,39 @@
             line-height: 1.7;
         }
 
+        /* --- CONTACT SECTION --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .contact-card {
+            background: var(--white);
+            padding: 2.5rem 2rem;
+            border-radius: 8px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover {
+            border-color: rgba(123, 17, 19, 0.2);
+            box-shadow: var(--shadow-md);
+        }
+        .contact-card h3 {
+            font-family: var(--font-sans);
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+        .contact-card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
         /* --- CTA SECTION --- */
         .cta-section {
             text-align: center;
@@ -967,6 +1049,23 @@
             }
             .nav-links.active { display: flex; }
             .mobile-menu-btn { display: block; }
+            
+            .dropdown {
+                flex-direction: column;
+                align-items: center;
+            }
+            .dropdown-content {
+                position: static;
+                transform: none;
+                box-shadow: none;
+                border: none;
+                background: transparent;
+                padding: 0;
+                display: none;
+            }
+            .dropdown:hover .dropdown-content, .dropdown:active .dropdown-content {
+                display: flex;
+            }
         }
 
         #register-nav-btn {
@@ -989,12 +1088,18 @@
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#about">About</a></li>
-            <li><a href="#speakers">Speakers</a></li>
-            <li><a href="#schedule">Schedule</a></li>
-            <li><a href="#research">Research</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Program ▾</a>
+                <div class="dropdown-content">
+                    <a href="#speakers">Speakers</a>
+                    <a href="#schedule">Schedule</a>
+                    <a href="#research">Research</a>
+                </div>
+            </li>
             <li><a href="#venue">Venue</a></li>
             <li><a href="#organizers">Organizers</a></li>
             <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Contact</a></li>
             <li><a id="register-nav-btn" href="#register" class="btn nav-btn">Register</a></li>
         </ul>
     </nav>
@@ -1090,6 +1195,8 @@
                 </div>
                 <button class="carousel-btn next" onclick="navigateCarousel('speakers-track', 1)">&rsaquo;</button>
             </div>
+            <!-- Dynamic Speakers Counter -->
+            <div class="carousel-counter fade-up delay-2" id="speakers-counter"></div>
         </section>
     </div>
 
@@ -1234,6 +1341,8 @@
                 </div>
                 <button class="carousel-btn next" onclick="navigateCarousel('research-track', 1)">&rsaquo;</button>
             </div>
+            <!-- Dynamic Research Counter -->
+            <div class="carousel-counter fade-up delay-2" id="research-counter"></div>
         </section>
     </div>
 
@@ -1362,6 +1471,29 @@
         </div>
     </section>
 
+    <!-- CONTACT US SECTION (Gray) -->
+    <div class="bg-gray">
+        <section id="contact">
+            <h2 class="fade-up">Contact Us</h2>
+            <p class="section-subtitle fade-up delay-1">Reach out to the organizing committee for any inquiries regarding the symposium</p>
+            
+            <div class="contact-grid fade-up delay-2">
+                <div class="contact-card">
+                    <h3>Email</h3>
+                    <p>symposium@stat.upd.edu.ph</p>
+                </div>
+                <div class="contact-card">
+                    <h3>Website</h3>
+                    <p>stat.upd.edu.ph</p>
+                </div>
+                <div class="contact-card">
+                    <h3>Address</h3>
+                    <p>UP School of Statistics,<br>UP Diliman, Quezon City, Philippines</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
     <!-- CTA / REGISTRATION -->
     <section id="register" class="cta-section">
         <div class="cta-container fade-up">
@@ -1417,9 +1549,10 @@
                 if(targetId === '#') return;
                 
                 e.preventDefault();
-                document.querySelector(targetId).scrollIntoView({
-                    behavior: 'smooth'
-                });
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
                 document.querySelector('.nav-links').classList.remove('active');
             });
         });
@@ -1498,6 +1631,43 @@
                 behavior: 'smooth'
             });
         }
+
+        // --- DYNAMIC CAROUSEL COUNTERS ---
+        function updateCounters() {
+            ['speakers', 'research'].forEach(id => {
+                const track = document.getElementById(`${id}-track`);
+                const counter = document.getElementById(`${id}-counter`);
+                if (!track || !counter) return;
+                
+                const cards = track.querySelectorAll('.carousel-card');
+                const total = cards.length;
+                if (total === 0) return;
+                
+                const gap = parseFloat(window.getComputedStyle(track).gap) || 0;
+                const itemWidth = cards[0].offsetWidth + gap;
+                
+                let firstVisible = Math.round(track.scrollLeft / itemWidth) + 1;
+                
+                let visibleItems = Math.round(track.offsetWidth / itemWidth);
+                visibleItems = Math.max(1, Math.min(visibleItems, total));
+                
+                let lastVisible = firstVisible + visibleItems - 1;
+                lastVisible = Math.min(lastVisible, total);
+                
+                counter.innerText = `${firstVisible}-${lastVisible} of ${total}`;
+            });
+        }
+
+        ['speakers', 'research'].forEach(id => {
+            const track = document.getElementById(`${id}-track`);
+            if (track) {
+                track.addEventListener('scroll', updateCounters);
+            }
+        });
+        window.addEventListener('resize', updateCounters);
+        
+        // Initialize Counters
+        setTimeout(updateCounters, 100);
 
         // Pre-fetched Academic Profile Storage
         const speakerData = {
